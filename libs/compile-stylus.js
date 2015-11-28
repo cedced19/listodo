@@ -1,6 +1,5 @@
 var stylus = require('stylus');
 var nib = require('nib');
-var autoprefixer = require('autoprefixer-stylus');
 
 var compile = {
   development: function (str, path) {
@@ -13,7 +12,6 @@ var compile = {
     return stylus(str)
      .set('filename', path)
      .set('compress', true)
-     .use(autoprefixer())
      .use(nib());
   }
 };
