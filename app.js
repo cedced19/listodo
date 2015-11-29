@@ -109,27 +109,20 @@ function(email, password, done) {
           }
 
           // test password
-          hash(password).hash(function(err, crypted) {
-            if (err) {
-              return done(null, false, {
-                  message: 'Invalid password.'
-              });
-            }
-            hash(crypted).verifyAgainst(myuser.hash, function(err, verified) {
-                if(err || !verified) {
-                  return done(null, false, {
-                      message: 'Invalid password.'
+          hash(password).verifyAgainst(model.password, function(err, verified) {
+              if(err || !verified) {
+                return done(null, false, {
+                    message: 'Invalid password.'
+                });
+              } else {
+                var returnmodel = {
+                    email: model.email,
+                    id: model.id
+                  };
+                  return done(null, returnmodel, {
+                    message: 'Logged in successfully.'
                   });
-                } else {
-                  var returnmodel = {
-                      email: model.email,
-                      id: model.id
-                    };
-                    return done(null, returnmodel, {
-                      message: 'Logged in successfully.'
-                    });
-                }
-            });
+              }
           });
 
         });
