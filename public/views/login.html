@@ -1,3 +1,9 @@
+<p class="task-error" ng-show="update">
+    There is a new version. You can update. <a href="{{update}}">Learn more</a>.
+</p>
+<p class="task-info" ng-hide="update">
+    You have the latest version.
+</p>
 <form ng-submit="login()">
     <div class="form-group">
         <label for="email">Email:</label>

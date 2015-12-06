@@ -1277,9 +1277,27 @@ a {
 	color:inherit;
 	text-decoration:none
 }
+.container a, .container a:link {
+	border-bottom:1px dotted #FB9A00;
+	text-decoration:none;
+	cursor:pointer
+}
+.container a:hover,.container a:link:hover {
+	color:#FB9A00;
+	border-bottom:0
+}
 .task-error {
 	color:#c7254e;
 	background-color:#f9f2f4
+}
+.task-error a, .task-error a:link {
+	border-bottom:1px dotted #c7254e;
+	text-decoration:none;
+	cursor:pointer
+}
+.task-error a:hover,.task-error a:link:hover {
+	color:#910000;
+	border-bottom:0
 }
 .task-info {
 	background-color:#d9edf7
@@ -1288,24 +1306,10 @@ a {
 	position:relative;
 	float:right
 }
-.task-info .action,.task-info .list {
+.task-info .action, .task-info .list {
 	position:relative;
 	float:left;
 	padding-right:10px
-}
-.container a {
-	border-bottom:1px dotted #FB9A00;
-	text-decoration:none;
-	cursor:pointer
-}
-.container a:link {
-	border-bottom:1px dotted #FB9A00;
-	text-decoration:none;
-	cursor:pointer
-}
-.container a:hover,.container a:link:hover {
-	color:#FB9A00;
-	border-bottom:0
 }
 @media only screen and (max-width:750px) {
 	.site-container,.site-pusher {
