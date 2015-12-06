@@ -3,7 +3,7 @@ var router = express.Router();
 var auth = require('../policies/auth.js');
 
 /* GET Users */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
     req.app.models.users.find().exec(function(err, models) {
         if(err) return next(err);
         models.forEach(function(model){
@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 });
 
 /* POST Users: create an user */
-router.post('/', auth, function(req, res) {
+router.post('/', auth, function(req, res, next) {
     req.app.models.users.create(req.body, function(err, model) {
         if(err) return next(err);
         res.json(model);
@@ -22,7 +22,7 @@ router.post('/', auth, function(req, res) {
 });
 
 /* GET User */
-router.get('/:id', function(req, res) {
+router.get('/:id', function(req, res, next) {
     req.app.models.users.findOne({ id: req.params.id }, function(err, model) {
         if(err) return next(err);
         if(model === '' || model === null || model === undefined) return next(err);
@@ -32,7 +32,7 @@ router.get('/:id', function(req, res) {
 });
 
 /* DELETE User */
-router.delete('/:id', auth, function(req, res) {
+router.delete('/:id', auth, function(req, res, next) {
     req.app.models.users.destroy({ id: req.params.id }, function(err) {
         if(err) return next(err);
         res.json({ status: 'ok' });
@@ -40,7 +40,7 @@ router.delete('/:id', auth, function(req, res) {
 });
 
 /* PUT User */
-router.put('/:id', auth, function(req, res) {
+router.put('/:id', auth, function(req, res, next) {
     delete req.body.id;
     req.app.models.users.update({ id: req.params.id }, req.body, function(err, model) {
         if(err) return next(err);

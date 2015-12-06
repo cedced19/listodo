@@ -1,0 +1,9 @@
+<p class="task-info">
+    <span class="list">{{currrentTask.list.name}}</span>
+    <span class="date">Updated at {{currrentTask.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</span>
+    <br>
+    <span class="fa fa-trash action" ng-click="removeTask()"></span>
+    <span class="fa fa-pencil action" ng-click="editing = true" ng-hide="editing"></span>
+    <span class="fa fa-print action" ng-click="print()" ng-hide="editing"></span>
+</p>
+</div>

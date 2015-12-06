@@ -6,23 +6,15 @@ var got = require('got');
 var semver = require('semver');
 
 /* GET Version */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
     got('https://raw.githubusercontent.com/cedced19/listodo/master/package.json', function (err, data) {
-        if(err) return res.status(500).json({err: 500});
+        if(err) return next(err);
         data = JSON.parse(data);
-        if (semver.gte(pkg.version, data.version)) {
-            res.json({
-                local: pkg.version,
-                github: data.version,
-                status: 'You have the latest version.'
-            });
-        } else if (semver.lt(pkg.version, data.version)) {
-            res.json({
-                local: pkg.version,
-                github: data.version,
-                status: 'You can update. <a href="https://github.com/cedced19/listodo/releases/latest">Learn more</a>.'
-            });
-        }
+        res.json({
+            local: pkg.version,
+            github: data.version,
+            url: 'https://github.com/cedced19/listodo/releases/latest'
+        });
     });
 });
 

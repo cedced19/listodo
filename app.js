@@ -7,13 +7,12 @@ var bodyParser = require('body-parser');
 
 var browserify = require('browserify-middleware');
 
-var stylus = require('stylus').middleware;
-var compile = require('./libs/compile-stylus');
+var compress = require('compression');
+var minify = require('express-minify');
 
 var passport = require('passport');
 var hash = require('password-hash-and-salt');
 var flash = require('connect-flash');
-var compress = require('compression');
 var helmet = require('helmet');
 var session = require('express-session');
 
@@ -22,6 +21,8 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var index = require('./routes/index');
 var users = require('./routes/users-api');
+var tasks = require('./routes/tasks-api');
+var lists = require('./routes/lists-api');
 var version = require('./routes/version-api');
 
 var app = express();
@@ -37,34 +38,20 @@ app.use(cookieParser());
 
 app.use(compress());
 
-// development css and js management
-// will not minify
+// chose what to do with css and js
 if (app.get('env') === 'development') {
   app.use(logger('dev'));
-  app.use(stylus({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
-    debug: true,
-    compile: compile.development
-  }));
   app.use('/javascripts/scripts.js', browserify(__dirname + '/public/javascripts/index.js', {
     debug: true,
     minify: false
   }));
+} else {
+  app.use(minify());
+  app.use('/javascripts/scripts.js', browserify(__dirname + '/public/javascripts/index.js', {
+    debug: false,
+    minify: true
+  }));
 }
-
-// production css and js management
-// will minify
-app.use(stylus({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  debug: false,
-  compile: compile.production
-}));
-app.use('/javascripts/scripts.js', browserify(__dirname + '/public/javascripts/index.js', {
-  debug: false,
-  minify: true
-}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -84,6 +71,8 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/api/users', users);
+app.use('/api/tasks', tasks);
+app.use('/api/lists', lists);
 app.use('/api/version', version);
 
 // authentication
@@ -100,7 +89,7 @@ passport.deserializeUser(function(id, done) {
 
 // define local strategy
 passport.use('local', new LocalStrategy({
-      usernameField: 'mail',
+      usernameField: 'email',
       passwordField: 'password'
 },
 function(email, password, done) {

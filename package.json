@@ -5,10 +5,11 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "angular": "^1.4.5",
-    "angular-cookies": "^1.4.5",
-    "angular-route": "^1.4.5",
-    "angular-sanitize": "^1.4.5",
+    "angular": "^1.4.8",
+    "angular-cookies": "^1.4.8",
+    "angular-route": "^1.4.8",
+    "angular-sanitize": "^1.4.8",
+    "angular-touch": "^1.4.8",
     "body-parser": "~1.14.1",
     "browserify-middleware": "^7.0.0",
     "compression": "^1.5.2",
@@ -17,11 +18,11 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "express-minify": "^0.1.6",
     "express-session": "^1.11.3",
     "got": "^5.1.0",
     "helmet": "^0.15.0",
     "morgan": "~1.6.1",
-    "nib": "^1.1.0",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "sails-disk": "^0.10.8",
@@ -29,7 +30,21 @@
     "serve-favicon": "~2.3.0",
     "session-file-store": "0.0.22",
     "slug": "^0.9.1",
-    "stylus": "^0.52.4",
     "waterline": "^0.10.26"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cedced19/zikcenter"
+  },
+  "author": {
+    "name": "Cédric",
+    "email": "cedced19@gmail.com",
+    "url": "https://github.com/cedced19"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://cedced19.github.io/license/"
+    }
+  ]
 }
