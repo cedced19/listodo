@@ -28,7 +28,7 @@
     "sails-disk": "^0.10.8",
     "semver": "^5.0.1",
     "serve-favicon": "~2.3.0",
-    "session-file-store": "0.0.22",
+    "session-file-store": "0.0.23",
     "slug": "^0.9.1",
     "waterline": "^0.10.26"
   },
