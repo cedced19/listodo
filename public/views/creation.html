@@ -1,5 +1,9 @@
-<h2>Create a new list</h2>
+<p class="task-error" ng-hide="lists">
+    There is no list, please create a list before create a task.
+</p>
+
 <form name="formList">
+    <h2>Create a new list</h2>
     <div class="input-group">
          <label for="list">List name:</label>
         <input type="text" name="list" id="list" class="form-control" ng-disabled placeholder="List" ng-model="newList.name">
@@ -9,16 +13,16 @@
     </div>
 </form>
 
-<h2>Add a new task</h2>
-<form name="formTask">
+<form name="formTask" ng-show="lists">
+    <h2>Add a new task</h2>
     <div class="input-group">
          <label for="task">Task name:</label>
         <input type="text" id="task" class="form-control" ng-disabled placeholder="Task" ng-model="newTask.name">
     </div>
     <div class="input-group">
         <label for="task-list">Task list:</label>
-        <select class="form-control" id="task-list" name="task-list" ng-disabled  ng-model="newTask.list">
-            <option></option>
+        <select class="form-control" id="task-list" name="task-list" ng-disabled  ng-model="newTask.list" ng-repeat="list in lists">
+            <option>{{list.name}}</option>
         </select>
     </div>
     <div class="input-group">

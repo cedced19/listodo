@@ -8,7 +8,7 @@ require('./alert/ng-sweet-alert.js');
 
 var app = angular.module('Listodo', ['hSweetAlert', 'ngSanitize', 'ngRoute', 'ngTouch', 'ngCookies']);
 
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', function($routeProvider) {
         $routeProvider
         .when('/', {
             templateUrl: '/views/tasks-list.html',
@@ -43,7 +43,7 @@ app.config(['$routeProvider', function($routeProvider){
         });
 }]);
 
-app.run(['$rootScope', '$location', function($rootScope, $location){
+app.run(['$rootScope', '$location', function($rootScope, $location) {
         $rootScope.$menu = {
             show: function () {
                      document.getElementsByTagName('body')[0].classList.add('with-sidebar');

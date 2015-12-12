@@ -11,7 +11,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
             };
 
             $scope.updateUser = function (user) {
-                $location.path('/users/' +user.id);
+                $location.path('/users/' + user.id);
             };
 
             $scope.deleteUser = function (user) {
