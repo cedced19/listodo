@@ -4,7 +4,7 @@ var auth = require('../policies/auth.js');
 
 /* GET Tasks */
 router.get('/', function(req, res, next) {
-    req.app.models.tasks.find().exec(function(err, models) {
+    req.app.models.tasks.find().populate('list').exec(function(err, models) {
         if(err) return next(err);
         res.json(models);
     });
@@ -20,8 +20,9 @@ router.post('/', auth, function(req, res, next) {
 
 /* GET Task */
 router.get('/:id', function(req, res, next) {
-    req.app.models.tasks.findOne({ id: req.params.id }, function(err, model) {
+    req.app.models.tasks.find({ id: req.params.id }).populate('list').exec(function(err, model) {
         if(err) return next(err);
+        model = model[0];
         if(model === '' || model === null || model === undefined) return next(err);
         res.json(model);
     });

@@ -6,15 +6,15 @@
             <tr>
                 <th>List</th>
                 <th>Name</th>
-                <th>Last update</th>
+                <th>Description</th>                
                 <th>Creation date</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="task in tasks | filter:search | orderBy:'updatedAt':true" ng-click="goTask(task)" class="fade">
+            <tr ng-repeat="task in tasks | filter:search | orderBy:'createdAt':false" ng-click="goTask(task)" class="fade">
                 <td>{{task.list.name}}</td>
                 <td>{{task.name}}</td>
-                <td>{{task.updatedAt | date: 'dd/MM/yyyy'}}</td>
+                <td>{{task.content | limitTo : 20}}</td>
                 <td>{{task.createdAt | date: 'dd/MM/yyyy'}}</td>
             </tr>
         </tbody>

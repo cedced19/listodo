@@ -3,6 +3,7 @@ var Waterline = require('Waterline');
 var Tasks = Waterline.Collection.extend({
     identity: 'tasks',
     connection: 'save',
+    autoUpdatedAt: false,
 
     attributes: {
         name: {
@@ -10,14 +11,13 @@ var Tasks = Waterline.Collection.extend({
             required: true
         },
         content: {
-            type: 'string',
-            required: true
+            type: 'string'
         },
         list: {
-            model: 'lists',
-            required: true   
+            model: 'lists'
         }
     }
+  
 });
 
 module.exports = Tasks;

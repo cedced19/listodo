@@ -4,8 +4,13 @@ var auth = require('../policies/auth.js');
 
 /* GET Lists */
 router.get('/', function(req, res, next) {
-    req.app.models.lists.find().exec(function(err, models) {
+    req.app.models.lists.find().populate('tasks').exec(function(err, models) {
         if(err) return next(err);
+        models.forEach(function (list) {
+            list.tasks.forEach(function (task) {
+               delete task.id;
+            });
+        });
         res.json(models);
     });
 });
@@ -20,8 +25,9 @@ router.post('/', auth, function(req, res, next) {
 
 /* GET Task */
 router.get('/:id', function(req, res, next) {
-    req.app.models.lists.findOne({ id: req.params.id }, function(err, model) {
+    req.app.models.lists.find({ id: req.params.id }).populate('tasks').exec(function(err, model) {
         if(err) return next(err);
+        model = model[0];
         if(model === '' || model === null || model === undefined) return next(err);
         res.json(model);
     });
