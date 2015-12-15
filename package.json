@@ -20,7 +20,7 @@
     "express": "~4.13.1",
     "express-minify": "^0.1.6",
     "express-session": "^1.11.3",
-    "got": "^5.2.0",
+    "got": "^5.2.1",
     "helmet": "^0.15.0",
     "morgan": "~1.6.1",
     "passport": "^0.3.0",
