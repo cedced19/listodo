@@ -10,7 +10,7 @@
     "angular-route": "^1.4.8",
     "angular-sanitize": "^1.4.8",
     "angular-touch": "^1.4.8",
-    "body-parser": "~1.14.1",
+    "body-parser": "~1.14.2",
     "browserify-middleware": "^7.0.0",
     "compression": "^1.5.2",
     "connect-flash": "^0.1.1",
