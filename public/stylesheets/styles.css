@@ -440,80 +440,20 @@ textarea.form-control {
 .fa-user:before {
 	content:"\f007"
 }
-.fa-repeat:before {
-	content:"\f01e"
-}
-.fa-print:before {
-	content:"\f02f"
-}
-.fa-bold:before {
-	content:"\f032"
-}
-.fa-italic:before {
-	content:"\f033"
-}
-.fa-align-left:before {
-	content:"\f036"
-}
-.fa-align-center:before {
-	content:"\f037"
-}
-.fa-align-right:before {
-	content:"\f038"
-}
-.fa-list:before {
-	content:"\f03a"
-}
-.fa-outdent:before {
-	content:"\f03b"
-}
-.fa-indent:before {
-	content:"\f03c"
-}
-.fa-picture-o:before {
-	content:"\f03e"
-}
 .fa-pencil:before {
 	content:"\f040"
 }
 .fa-pencil-square-o:before {
 	content:"\f044"
 }
-.fa-ban:before {
-	content:"\f05e"
-}
-.fa-link:before {
-	content:"\f0c1"
-}
-.fa-list-ul:before {
-	content:"\f0ca"
-}
-.fa-list-ol:before {
-	content:"\f0cb"
-}
-.fa-strikethrough:before {
-	content:"\f0cc"
-}
-.fa-underline:before {
-	content:"\f0cd"
-}
-.fa-undo:before {
-	content:"\f0e2"
-}
-.fa-quote-right:before {
-	content:"\f10e"
-}
-.fa-code:before {
-	content:"\f121"
-}
-.fa-youtube-play:before {
-	content:"\f16a"
-}
-.fa-trash:before {
-	content:"\f1f8"
+.fa-list:before {
+    content: "\f03a";
 }
 .fa-power-off:before {
 	content:"\f011"
+}
+.fa-check:before {
+    content: "\f00c";
 }
 .sweet-overlay {
 	background-color:rgba(0,0,0,0.4);
@@ -1302,14 +1242,9 @@ a {
 .task-info {
 	background-color:#d9edf7
 }
-.task-info .date {
-	position:relative;
-	float:right
-}
-.task-info .action, .task-info .list {
-	position:relative;
-	float:left;
-	padding-right:10px
+.task-action {
+    position:relative;
+	float: right;
 }
 @media only screen and (max-width:750px) {
 	.site-container,.site-pusher {

@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.cookie('listodo-user', JSON.stringify(req.user), { httpOnly: true });
+    res.cookie('listodo-user', JSON.stringify(req.user));
     res.json(req.user);
 });
 

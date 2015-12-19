@@ -1,11 +1,10 @@
-<p class="task-info">
-    <span class="list">{{currentTask.list.name}}</span>
-    <span class="date">Updated at {{currentTask.createdAt | date: 'dd/MM/yyyy HH:mm'}}</span>
-    <br>
-    <span class="fa fa-pencil action" ng-click="editing = true" ng-hide="editing"></span>
-</p>
+<h1>
+    {{currentTask.list.name}}  
+    <span class="fa fa-pencil task-action" ng-click="editing = true" ng-hide="editing"></span>
+    <span class="fa fa-check task-action" ng-click="removeTask()" ng-hide="editing"></span>
+</h1>
+<h4>Updated at {{currentTask.createdAt | date: 'dd/MM/yyyy HH:mm'}}</h4>
 <p>{{currentTask.content}}</p>
 <div class="text-center">
-    <button class="btn btn-success" ng-click="removeTask()" ng-hide="editing">Complete and remove the task</button>
     <button class="btn btn-success" ng-click="updateTask()" ng-show="editing">Update the task</button>
 </div>
