@@ -37,6 +37,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
                         list: $scope.newTask.list.id,
                         content: $scope.newTask.content
                 }).success(function (data) {
+                        $location.path('/tasks/' + data.id)
                         sweet.show('The task has been created.', '', 'success');
                 }).error(function() {
                         sweet.show('Oops...', 'Something went wrong!', 'error');
