@@ -1,4 +1,4 @@
-var Waterline = require('Waterline');
+var Waterline = require('waterline');
 var hash = require('password-hash-and-salt');
 
 var format = function(user, cb) {

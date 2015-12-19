@@ -1,4 +1,4 @@
-var Waterline = require('Waterline');
+var Waterline = require('waterline');
 
 var Tasks = Waterline.Collection.extend({
     identity: 'lists',
