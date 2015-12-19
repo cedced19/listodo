@@ -8,4 +8,8 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
         }).error(function() {
                 sweet.show('Oops...', 'Something went wrong!', 'error');
         });
+        
+        $scope.goTask = function (task) {
+            $location.path('/tasks/' + task.id);
+        };
 }];
