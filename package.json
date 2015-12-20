@@ -1,8 +1,12 @@
 {
   "name": "listodo",
   "version": "0.0.0",
+  "description": "A self-hosted website to save your todo list.",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/listodo"
+  },
+  "bin": {
+    "listodo": "bin/listodo"
   },
   "dependencies": {
     "angular": "^1.4.8",
