@@ -1,19 +1,17 @@
-<p class="task-error" ng-show="update">
-    There is a new version. You can update. <a href="{{update}}">Learn more</a>.
-</p>
-<p class="task-info" ng-hide="update">
-    You have the latest version.
-</p>
-<form ng-submit="login()">
+<h2>Log in</h2>
+<form name="formLogin">
     <div class="form-group">
         <label for="email">Email:</label>
-        <input id="email" name="email" ng-model="email" type="email" class="form-control" placeholder="Email">
+        <input id="email" name="email" ng-model="email" type="email" class="form-control" placeholder="Email" required>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input id="password" email="password" ng-model="password" type="password" class="form-control" placeholder="Password">
+        <input id="password" name="password" ng-model="password" type="password" class="form-control" placeholder="Password" required>
     </div>
     <div class="form-group">
-        <button class="btn btn-default">Login</button>
+        <i>You haven't account? Create it <a href="#/signup">here</a>.</i>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" ng-disabled="formLogin.$invalid" ng-click="login()">Log in</button>
     </div>
 </form>

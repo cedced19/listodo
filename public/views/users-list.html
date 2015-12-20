@@ -1,3 +1,10 @@
+<p class="task-error" ng-show="update">
+    There is a new version. You can update. <a href="{{update}}">Learn more</a>.
+</p>
+<p class="task-info" ng-hide="update">
+    You have the latest version.
+</p>
+<h2>Users</h2>
 <div class="form-inline">
     <input ng-model="search" type="text" class="form-control" placeholder="Search">
     <input ng-click="createUser()" type="submit" class="btn btn-default" value="Add a new user">
@@ -24,3 +31,26 @@
         </tbody>
     </table>
 </div>
+<h2>Registrants</h2>
+<div class="table-responsive" ng-show="registrants">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="registrant in registrants | orderBy:id" class="fade">
+                <td>{{registrant.id}}</td>
+                <td>{{registrant.email}}</td>
+                <td>
+                    <span class="fa fa-trash" ng-click="deleteRegistrant(registrant)"></span>
+                    <span class="fa fa-user-plus" ng-click="addUser(registrant)"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p ng-hide="registrants">There is no registrant.</p>

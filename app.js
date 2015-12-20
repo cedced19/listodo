@@ -21,6 +21,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var index = require('./routes/index');
 var users = require('./routes/users-api');
+var registrants = require('./routes/registrants-api');
 var tasks = require('./routes/tasks-api');
 var lists = require('./routes/lists-api');
 var version = require('./routes/version-api');
@@ -71,6 +72,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/api/users', users);
+app.use('/api/registrants', registrants);
 app.use('/api/tasks', tasks);
 app.use('/api/lists', lists);
 app.use('/api/version', version);

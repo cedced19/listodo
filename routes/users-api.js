@@ -3,7 +3,7 @@ var router = express.Router();
 var auth = require('../policies/auth.js');
 
 /* GET Users */
-router.get('/', function(req, res, next) {
+router.get('/', auth, function(req, res, next) {
     req.app.models.users.find().exec(function(err, models) {
         if(err) return next(err);
         models.forEach(function(model){
@@ -22,7 +22,7 @@ router.post('/', auth, function(req, res, next) {
 });
 
 /* GET User */
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth, function(req, res, next) {
     req.app.models.users.findOne({ id: req.params.id }, function(err, model) {
         if(err) return next(err);
         if(model === '' || model === null || model === undefined) return next(err);

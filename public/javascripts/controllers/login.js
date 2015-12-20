@@ -1,11 +1,5 @@
 module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = 'login';
-        
-        $http.get('/api/version').success(function (data) {
-                if (require('semver').lt(data.local, data.github)) {
-                        $scope.update = data.url;
-                }
-        });
    
         $scope.login = function () {
             $http.post('/login', {

@@ -34,6 +34,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/views/users-id.html',
             controller: 'ListodoUsersIdCtrl'
         })
+        .when('/signup', {
+            templateUrl: '/views/signup.html',
+            controller: 'ListodoSignupCtrl'
+        })
         .when('/login', {
             templateUrl: '/views/login.html',
             controller: 'ListodoLoginCtrl'
@@ -63,4 +67,5 @@ app.controller('ListodoCreationCtrl', require('./controllers/creation'));
 app.controller('ListodoUsersListCtrl', require('./controllers/users-list'))
 app.controller('ListodoUsersIdCtrl', require('./controllers/users-id'));
 app.controller('ListodoUsersNewCtrl', require('./controllers/users-new'));
+app.controller('ListodoSignupCtrl', require('./controllers/signup'));
 app.controller('ListodoLoginCtrl', require('./controllers/login'));

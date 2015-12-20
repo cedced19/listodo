@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
         if(err) return next(err);
         models.forEach(function (list) {
             list.tasks.forEach(function (task) {
-               delete task.id;
+               delete task.list;
             });
         });
         res.json(models);
