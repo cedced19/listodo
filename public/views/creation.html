@@ -1,4 +1,4 @@
-<p class="task-error" ng-hide="lists">
+<p class="task-error" ng-hide="lists.length">
     There is no list, please create a list before create a task.
 </p>
 
@@ -13,7 +13,7 @@
     </div>
 </form>
 
-<form name="formTask" ng-show="lists">
+<form name="formTask" ng-show="lists.length">
     <h2>Add a new task</h2>
     <div class="input-group">
          <label for="task-name">Task name:</label>

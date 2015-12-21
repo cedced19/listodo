@@ -5,11 +5,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
         
         
         $http.get('/api/lists').success(function (data) {
-                if (data.length === 0) {
-                        $scope.lists = false;   
-                } else {
-                        $scope.lists = data;
-                };
+                $scope.lists = data;
         }).error(function() {
                 sweet.show('Oops...', 'Something went wrong!', 'error');
         });
@@ -19,9 +15,6 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
                 $http.post('/api/lists',  {
                         name: $scope.newList.name
                 }).success(function (data) {
-                        if (!Array.isArray($scope.lists)) {
-                                $scope.lists = [];
-                        }
                         $scope.newList = {};
                         $scope.lists.push(data);
                         sweet.show('The list has been created.', '', 'success');
