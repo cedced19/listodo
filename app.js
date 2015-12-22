@@ -47,11 +47,11 @@ if (app.get('env') === 'development') {
     minify: false
   }));
 } else {
-  app.use(minify());
   app.use('/javascripts/scripts.js', browserify(__dirname + '/public/javascripts/index.js', {
     debug: false,
     minify: true
   }));
+  app.use(minify());
 }
 
 app.use(express.static(path.join(__dirname, 'public')));

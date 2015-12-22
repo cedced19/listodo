@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "A self-hosted website to save your todo list.",
   "scripts": {
-    "start": "node ./bin/listodo"
+    "start": "node ./bin/listodo",
+    "test": "mocha --timeout 50000"
   },
   "bin": {
     "listodo": "bin/listodo"
@@ -51,5 +52,10 @@
       "type": "MIT",
       "url": "http://cedced19.github.io/license/"
     }
-  ]
+  ],
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0"
+  }
 }
