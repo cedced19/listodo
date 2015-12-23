@@ -2,11 +2,10 @@ require('angular'); /*global angular*/
 require('angular-route');
 require('angular-sanitize');
 require('angular-touch');
-require('angular-cookies');
 require('./alert/sweet-alert.js');
 require('./alert/ng-sweet-alert.js');
 
-var app = angular.module('Listodo', ['hSweetAlert', 'ngSanitize', 'ngRoute', 'ngTouch', 'ngCookies']);
+var app = angular.module('Listodo', ['hSweetAlert', 'ngSanitize', 'ngRoute', 'ngTouch']);
 
 app.config(['$routeProvider', function($routeProvider) {
         $routeProvider
@@ -47,18 +46,31 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-app.run(['$rootScope', '$location', function($rootScope, $location) {
+app.run(['$rootScope', '$location', '$http', function ($rootScope, $location, $http) {
         $rootScope.$menu = {
             show: function () {
-                     document.getElementsByTagName('body')[0].classList.add('with-sidebar');
+              document.getElementsByTagName('body')[0].classList.add('with-sidebar');
             },
             hide: function (path) {
-                    document.getElementsByTagName('body')[0].classList.remove('with-sidebar');
-                    if (path) {
-                        $location.path(path);
-                    }
+              document.getElementsByTagName('body')[0].classList.remove('with-sidebar');
+              if (path) {
+                $location.path(path);
+              }
+            },
+            logout: function () {
+              $http.get('/logout').success(function () {
+                $rootScope.user = false;
+                $location.path('/');
+              });
             }
         };
+        $http.get('/authenticated').success(function (data) {
+          if (data.status) {
+              $rootScope.user = data.user;
+          } else {
+              $rootScope.user = false;
+          }
+        });
 }]);
 
 app.controller('ListodoTasksListCtrl', require('./controllers/tasks-list'))

@@ -1,7 +1,5 @@
-module.exports = ['$routeParams', '$scope', '$location', '$http', '$rootScope', '$cookieStore', 'sweet', function($routeParams, $scope, $location, $http, $rootScope, $cookieStore, sweet) {
+module.exports = ['$routeParams', '$scope', '$location', '$http', '$rootScope', 'sweet', function($routeParams, $scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = '';
-
-        $rootScope.user = $cookieStore.get('listodo-user');
 
         if ($rootScope.user.id == $routeParams.id) {
             $scope.email = $rootScope.user.email;

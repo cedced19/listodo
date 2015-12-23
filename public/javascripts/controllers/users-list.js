@@ -1,17 +1,15 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 'sweet', function($scope, $location, $http, $rootScope, $cookieStore, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = 'users';
 
-        $rootScope.user = $cookieStore.get('listodo-user');
-        
         $http.get('/api/version').success(function (data) {
             if (require('semver').lt(data.local, data.github)) {
                 $scope.update = data.url;
             }
         });
-        
+
         $http.get('/api/registrants').success(function (data) {
             $scope.registrants = data;
-            
+
             $scope.addUser = function(user) {
                 $scope.registrants.forEach(function (value, key) {
                    if (value.id == user.id) {
@@ -30,7 +28,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
                    }
                 });
             };
-            
+
             $scope.deleteRegistrant = function (user) {
                 $scope.registrants.forEach(function (value, key) {
                    if (value.id == user.id) {
@@ -47,7 +45,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
         }).error(function() {
             sweet.show('Oops...', 'Something went wrong!', 'error');
         });
-        
+
         $http.get('/api/users').success(function(data) {
             $scope.users = data;
 

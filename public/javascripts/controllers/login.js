@@ -1,7 +1,6 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', '$cookieStore', function($scope, $location, $http, $rootScope, sweet, $cookieStore) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = 'login';
 
-        $rootScope.user = $cookieStore.get('listodo-user');
         if ($rootScope.user) {
             $location.path('/');
         }

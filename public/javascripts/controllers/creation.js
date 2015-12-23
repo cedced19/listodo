@@ -1,15 +1,12 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 'sweet', function($scope, $location, $http, $rootScope, $cookieStore, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = 'creation';
-        
-        $rootScope.user = $cookieStore.get('listodo-user');
-        
-        
+
         $http.get('/api/lists').success(function (data) {
                 $scope.lists = data;
         }).error(function() {
                 sweet.show('Oops...', 'Something went wrong!', 'error');
         });
-        
+
         $scope.newList = {};
         $scope.displayList = function() {
                 $http.post('/api/lists',  {
@@ -22,7 +19,7 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
                         sweet.show('Oops...', 'Something went wrong!', 'error');
                 });
         };
-        
+
         $scope.newTask = {};
         $scope.displayTask = function() {
                 $http.post('/api/tasks',  {
@@ -36,5 +33,5 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 
                         sweet.show('Oops...', 'Something went wrong!', 'error');
                 });
         };
-        
+
 }];

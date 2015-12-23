@@ -1,14 +1,13 @@
-module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', '$cookieStore', 'sweet', function($scope, $location, $http, $routeParams, $rootScope,  $cookieStore, sweet) {
+module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'sweet', function($scope, $location, $http, $routeParams, $rootScope, sweet) {
         $rootScope.nav = '';
-        $rootScope.user = $cookieStore.get('listodo-user');
-        
+
         $http.get('/api/tasks/' + $routeParams.id).success(function (data) {
             $scope.currentTask = data;
         }).error(function () {
             sweet.show('Oops...', 'This task does not exist anymore.', 'error');
             $location.path('/');
         });
-        
+
         $scope.updateTask = function () {
             $http.put('/api/tasks/' + $scope.currentTask.id,  {
                     name: $scope.currentTask.name,
@@ -20,7 +19,7 @@ module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 
                     sweet.show('Oops...', 'Something went wrong!', 'error');
             });
         };
-        
+
         $scope.deleteTask = function () {
             sweet.show({
                 title: 'Confirm',

@@ -1,7 +1,5 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', '$cookieStore', 'sweet', function($scope, $location, $http, $rootScope, $cookieStore, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
         $rootScope.nav = '';
-
-        $rootScope.user = $cookieStore.get('listodo-user');
 
         $scope.createUser = function() {
             $http.post('/api/users', {
