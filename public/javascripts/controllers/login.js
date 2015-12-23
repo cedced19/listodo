@@ -1,6 +1,11 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', '$cookieStore', function($scope, $location, $http, $rootScope, sweet, $cookieStore) {
         $rootScope.nav = 'login';
-   
+
+        $rootScope.user = $cookieStore.get('listodo-user');
+        if ($rootScope.user) {
+            $location.path('/');
+        }
+
         $scope.login = function () {
             $http.post('/login', {
                 email: $scope.email,

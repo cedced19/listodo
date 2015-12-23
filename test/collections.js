@@ -2,7 +2,7 @@ var assert = require('assert');
 var Waterline = require('waterline');
 var memoryAdapter = require('sails-memory');
 
-suite('Test users model', function () {
+suite('Test models', function () {
     var waterline = new Waterline();
     var config = {
         adapters: {

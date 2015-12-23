@@ -1,4 +1,4 @@
-require('angular');
+require('angular'); /*global angular*/
 require('angular-route');
 require('angular-sanitize');
 require('angular-touch');
