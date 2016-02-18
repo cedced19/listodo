@@ -59,19 +59,17 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', functio
                 if (user.id == $scope.user.id) {
                     notie.alert(3, 'You can\'t delete yourself!', 3);
                 } else {
-                    $rootScope.$login(function () {
-                      notie.confirm('Delete this user?', 'Yes, delete it!', 'Cancel', function() {
-                        $http.delete('/api/users/'+ user.id).success(function() {
-                              $scope.users.forEach(function (value, key) {
-                                  if (value.id == user.id) {
-                                      delete $scope.users[key];
-                                  }
-                              });
-                              $scope.search = '';
-                              notie.alert(1, 'Deleted! The user has been deleted.', 3);
-                            }).error($rootScope.$error);
-                        });
-                    });
+                   notie.confirm('Delete this user?', 'Yes, delete it!', 'Cancel', function() {
+                      $http.delete('/api/users/'+ user.id).success(function() {
+                            $scope.users.forEach(function (value, key) {
+                                if (value.id == user.id) {
+                                    delete $scope.users[key];
+                                }
+                            });
+                            $scope.search = '';
+                            notie.alert(1, 'Deleted! The user has been deleted.', 3);
+                      }).error($rootScope.$error);
+                   });
                 }
             };
         }).error($rootScope.$error);
