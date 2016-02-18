@@ -27,6 +27,7 @@
     "got": "^5.2.1",
     "helmet": "^1.0.0",
     "morgan": "~1.6.1",
+    "ng-notie": "0.0.1",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "password-hash-and-salt": "^0.1.3",

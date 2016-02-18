@@ -12,8 +12,6 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', functio
             }).success(function(data) {
                 $rootScope.user = data;
                 $location.path('/')
-            }).error(function() {
-                sweet.show('Oops...', 'Something went wrong!', 'error');
-            });
+            }).error($rootScope.$error);
         };
 }];

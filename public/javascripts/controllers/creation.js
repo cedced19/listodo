@@ -1,11 +1,13 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', 'notie', function($scope, $location, $http, $rootScope, notie) {
         $rootScope.nav = 'creation';
 
+        if (!$rootScope.user) {
+          $location.path('/');
+        }
+        
         $http.get('/api/lists').success(function (data) {
                 $scope.lists = data;
-        }).error(function() {
-                sweet.show('Oops...', 'Something went wrong!', 'error');
-        });
+        }).error($rootScope.$error);
 
         $scope.newList = {};
         $scope.displayList = function() {
@@ -14,10 +16,8 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', functio
                 }).success(function (data) {
                         $scope.newList = {};
                         $scope.lists.push(data);
-                        sweet.show('The list has been created.', '', 'success');
-                }).error(function() {
-                        sweet.show('Oops...', 'Something went wrong!', 'error');
-                });
+                        notie.alert(1, 'The list has been created.', 3);
+                }).error($rootScope.$error);
         };
 
         $scope.newTask = {};
@@ -27,11 +27,9 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', functio
                         list: $scope.newTask.list.id,
                         content: $scope.newTask.content
                 }).success(function (data) {
-                        $location.path('/tasks/' + data.id)
-                        sweet.show('The task has been created.', '', 'success');
-                }).error(function() {
-                        sweet.show('Oops...', 'Something went wrong!', 'error');
-                });
+                        $location.path('/tasks/' + data.id);
+                        notie.alert(1, 'The task has been created.', 3);
+                }).error($rootScope.$error);
         };
 
 }];

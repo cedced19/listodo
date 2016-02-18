@@ -1,41 +1,33 @@
-module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'sweet', function($scope, $location, $http, $routeParams, $rootScope, sweet) {
+module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'notie', function($scope, $location, $http, $routeParams, $rootScope, notie) {
         $rootScope.nav = '';
 
         $http.get('/api/tasks/' + $routeParams.id).success(function (data) {
             $scope.currentTask = data;
         }).error(function () {
-            sweet.show('Oops...', 'This task does not exist anymore.', 'error');
+            notie.alert(3, 'This task does not exist anymore.', 3); 
             $location.path('/');
         });
 
         $scope.updateTask = function () {
-            $http.put('/api/tasks/' + $scope.currentTask.id,  {
-                    name: $scope.currentTask.name,
-                    content: $scope.currentTask.content
-            }).success(function (data) {
-                    sweet.show('The task has been updated.', '', 'success');
-                    $scope.editing = false;
-            }).error(function() {
-                    sweet.show('Oops...', 'Something went wrong!', 'error');
+            $rootScope.$login(function () {
+              $http.put('/api/tasks/' + $scope.currentTask.id,  {
+                      name: $scope.currentTask.name,
+                      content: $scope.currentTask.content
+              }).success(function (data) {
+                      notie.alert(1, 'The task has been updated.', 3);
+                      $scope.editing = false;
+              }).error($rootScope.$error);
             });
         };
 
         $scope.deleteTask = function () {
-            sweet.show({
-                title: 'Confirm',
-                text: 'Delete this task?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes, delete it!',
-                closeOnConfirm: false
-            }, function() {
-                $http.delete('/api/tasks/'+ $scope.currentTask.id).success(function() {
-                    sweet.show('Deleted!', 'The lesson has been deleted.', 'success');
-                    $location.path('/');
-                }).error(function() {
-                    sweet.show('Oops...', 'Something went wrong!', 'error');
-                });
+            $rootScope.$login(function () {
+              notie.confirm('Delete this task?', 'Yes, delete it!', 'Cancel', function() {
+                  $http.delete('/api/tasks/'+ $scope.currentTask.id).success(function() {
+                      notie.alert(1, 'Deleted! The task has been deleted.', 3);
+                      $location.path('/');
+                  }).error($rootScope.$error);
+              });
             });
         }
 }];
