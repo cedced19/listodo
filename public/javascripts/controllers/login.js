@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$location', '$http', '$rootScope', 'sweet', function($scope, $location, $http, $rootScope, sweet) {
+module.exports = ['$scope', '$location', '$http', '$rootScope', function($scope, $location, $http, $rootScope) {
         $rootScope.nav = 'login';
 
         if ($rootScope.user) {
