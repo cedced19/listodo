@@ -25,6 +25,7 @@ var registrants = require('./routes/registrants-api');
 var tasks = require('./routes/tasks-api');
 var lists = require('./routes/lists-api');
 var version = require('./routes/version-api');
+var sync = require('./routes/sync-api');
 
 var app = express();
 
@@ -76,6 +77,7 @@ app.use('/api/registrants', registrants);
 app.use('/api/tasks', tasks);
 app.use('/api/lists', lists);
 app.use('/api/version', version);
+app.use('/api/sync', sync);
 
 // authentication
 passport.serializeUser(function(model, done) {
