@@ -1,8 +1,8 @@
 module.exports = ['$scope', '$location', '$http', '$rootScope', function($scope, $location, $http, $rootScope) {
         $rootScope.nav = 'tasks';
 
-        $http.get('/api/tasks').success(function (data) {
-                $scope.tasks = data;
+        $http.get('/api/lists').success(function (data) {
+                $scope.lists = data;
         }).error($rootScope.$error);
 
         $scope.goTask = function (task) {

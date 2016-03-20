@@ -1,20 +1,18 @@
-<input ng-model="search" type="text" class="form-control" placeholder="Search">
-<br>
-<div class="table-responsive">
-    <table class="table table-hover">
+<input ng-model="search" type="text" class="form-control" placeholder="Search" style="margin-bottom: 10px">
+<div ng-repeat="list in lists">
+    <h2 style="margin:0" ng-show="list.tasks.length">{{list.name}}</h2>
+    <table class="table table-striped table-hover" ng-show="list.tasks.length">
         <thead>
             <tr>
-                <th>List</th>
                 <th>Name</th>
-                <th>Description</th>                
+                <th>Description</th>
                 <th>Creation date</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="task in tasks | filter:search | orderBy:'createdAt':false" ng-click="goTask(task)" class="fade">
-                <td>{{task.list.name}}</td>
+            <tr ng-repeat="task in list.tasks | filter:search | orderBy:'createdAt':true" ng-click="goTask(task)" class="fade">
                 <td>{{task.name}}</td>
-                <td>{{task.content | limitTo : 20}}</td>
+                <td>{{task.content}}</td>
                 <td>{{task.createdAt | date: 'dd/MM/yyyy'}}</td>
             </tr>
         </tbody>

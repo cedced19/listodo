@@ -75,6 +75,7 @@ table {
 }
 td,th {
 	padding:0
+	display: inline-block;
 }
 @media print {
 	* {
@@ -177,7 +178,8 @@ th {
 }
 .table {
 	width:100%;
-	margin-bottom:20px
+	margin-bottom:20px;
+	table-layout:fixed;
 }
 .table>tbody>tr>td,.table>thead>tr>th {
 	padding:8px;
