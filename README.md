@@ -7,7 +7,7 @@ Listodo is a self-hosted website to save your todo list.
 
 ![](https://raw.githubusercontent.com/cedced19/listodo/master/demo.png)
 
-## CLI (soon)
+## CLI
 
 ```bash
 $ npm install listodo -g
@@ -35,3 +35,14 @@ $ npm start --production
 
 --port [number]            specified the port
 ```
+
+## API
+
+
+There are Rest APIs on `http://localhost:7777/api/`.
+
+You can use a [application](https://github.com/cedced19/listodo-mobile)  to show you your todo list on your mobile phone online and __offline__.
+
+There are two solution to get todo lists on this application:
+* redirect ports on your server and get your global ip
+* be on the same wifi as your server and get its local ip
