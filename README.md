@@ -46,3 +46,9 @@ You can use a [application](https://github.com/cedced19/listodo-mobile)  to show
 There are two solution to get todo lists on this application:
 * redirect ports on your server and get your global ip
 * be on the same wifi as your server and get its local ip
+
+## Developers
+
+There are two npm command with which you can compile javascript:
+* `npm run dev`: reload page on change and build bundle
+* `npm run prod`: build and uglify bundle

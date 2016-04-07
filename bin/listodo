@@ -40,6 +40,12 @@ models.waterline.initialize(models.config, function(err, models) {
 });
 
 /**
+  * Build javascript client file.
+  */
+
+require('../build/prod')();
+
+/**
  * Normalize a port into a number, string, or false.
  */
 
