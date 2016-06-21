@@ -1,10 +1,9 @@
 module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'notie', function($scope, $location, $http, $routeParams, $rootScope, notie) {
-        $rootScope.nav = '';
 
         $http.get('/api/tasks/' + $routeParams.id).success(function (data) {
             $scope.currentTask = data;
         }).error(function () {
-            notie.alert(3, 'This task does not exist anymore.', 3); 
+            notie.alert(3, 'This task does not exist anymore.', 3);
             $location.path('/');
         });
 
