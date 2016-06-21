@@ -3,10 +3,16 @@ require('angular-route');
 require('angular-sanitize');
 require('angular-touch');
 require('ng-notie');
+require('angular-translate');
+require('angular-translate-loader-static-files');
+require('angular-translate-loader-url');
+require('angular-local-storage');
 
-var app = angular.module('Listodo', ['ngNotie', 'ngSanitize', 'ngRoute', 'ngTouch']);
 
-app.config(['$routeProvider', function($routeProvider) {
+var app = angular.module('Listodo', ['ngNotie', 'ngSanitize', 'ngRoute', 'ngTouch', 'LocalStorageModule', 'pascalprecht.translate']);
+
+app.config(['$routeProvider', '$translateProvider', 'localStorageServiceProvider',  function($routeProvider, $translateProvider, localStorageServiceProvider) {
+        // Route configuration
         $routeProvider
         .when('/', {
             templateUrl: '/views/tasks-list.html',
@@ -40,12 +46,34 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/views/login.html',
             controller: 'ListodoLoginCtrl'
         })
+        .when('/languages', {
+            templateUrl: '/views/languages.html',
+            controller: 'ListodoLanguagesCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
+
+        // Localstorage configuration
+        localStorageServiceProvider.setPrefix('learn-memory');
+
+        // i18n configuration
+        $translateProvider
+        .useStaticFilesLoader({
+            prefix: '/langs/locale-',
+            suffix: '.json'
+        })
+        .registerAvailableLanguageKeys(['en', 'fr'], {
+          'fr_*': 'fr',
+          'en_*': 'en',
+          '*': 'en'
+        })
+        .useSanitizeValueStrategy(null)
+        .determinePreferredLanguage()
+        .fallbackLanguage('en');
 }]);
 
-app.run(['$rootScope', '$location', '$http', 'notie', function ($rootScope, $location, $http, notie) {
+app.run(['$rootScope', '$location', '$http', 'notie', '$translate', 'localStorageService', function ($rootScope, $location, $http, notie, $translate, localStorageService) {
         $rootScope.$menu = {
             show: function () {
               document.getElementsByTagName('body')[0].classList.add('with-sidebar');
@@ -75,37 +103,55 @@ app.run(['$rootScope', '$location', '$http', 'notie', function ($rootScope, $loc
               $rootScope.user = false;
           }
         });
-        $rootScope.$error = function () {
+
+        $rootScope.$error = function () { // Send message error
           $http.get('/authenticated').success(function (data) {
             if (!data.status) {
                 $rootScope.user = false;
             }
-            notie.alert(3, 'Something went wrong!', 3);
+            $translate('error_occured').then(function (error) {
+              notie.alert(3, error , 3);
+            });
+
           }).error(function () {
-            notie.alert(3, 'Cannot access to the server.', 3);
+            $translate('http_error').then(function (error) {
+              notie.alert(3, error, 3);
+            });
           });
         };
-        $rootScope.$login = function (cb) {
+
+
+        $rootScope.$login = function (cb) { // Login before error
           $http.get('/authenticated').success(function (data) {
             if (!data.status) {
-              notie.input('You must authenticate to do that', 'Continue', 'Cancel', 'email', 'Email', function (email) {
-                notie.input('You must authenticate to do that', 'Login', 'Cancel', 'password', 'Password', function (password) {
-                  $http.post('/login', {
-                      email: email,
-                      password: password
-                  }).success(function(data) {
-                      $rootScope.user = data;
-                      cb();
-                  }).error(function () {
-                      notie.alert(3, 'Invalid name or password.', 3);
+
+              $translate(['authenticate_title', 'login', 'continue', 'cancel', 'name', 'password', 'invalid_auth']).then(function (translations) {
+
+                notie.input(translations['authenticate_title'], translations['continue'], translations['cancel'], 'text', translations['name'], function (name) {
+                  notie.input(translations['authenticate_title'], translations['login'], translations['cancel'], 'password', translations['password'], function (password) {
+                    $http.post('/login', {
+                        name: name,
+                        password: password
+                    }).success(function(data) {
+                        $rootScope.user = data;
+                        cb();
+                    }).error(function () {
+                        notie.alert(3, translations['invalid_auth'], 3);
+                    });
                   });
                 });
+
               });
             } else {
               cb();
             }
           });
         };
+
+        var lang = localStorageService.get('lang');
+        if (lang) {
+          $translate.use(lang);
+        }
 }]);
 
 app.controller('ListodoTasksListCtrl', require('./controllers/tasks-list'))
@@ -116,3 +162,4 @@ app.controller('ListodoUsersIdCtrl', require('./controllers/users-id'));
 app.controller('ListodoUsersNewCtrl', require('./controllers/users-new'));
 app.controller('ListodoSignupCtrl', require('./controllers/signup'));
 app.controller('ListodoLoginCtrl', require('./controllers/login'));
+app.controller('ListodoLanguagesCtrl', require('./controllers/languages.js'));

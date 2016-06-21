@@ -438,6 +438,9 @@ textarea.form-control {
 .fa-user:before {
 	content:"\f007"
 }
+.fa-globe:before {
+	content: "\f0ac"
+}
 .fa-pencil:before {
 	content:"\f040"
 }

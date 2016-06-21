@@ -1,12 +1,12 @@
-<input ng-model="search" type="text" class="form-control" placeholder="Search" style="margin-bottom: 10px">
+<input ng-model="search" type="text" class="form-control" placeholder="{{ 'search' | translate }}" style="margin-bottom: 10px">
 <div ng-repeat="list in lists">
     <h2 style="margin:0" ng-show="list.tasks.length">{{list.name}}</h2>
     <table class="table table-hover" ng-show="list.tasks.length">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Creation date</th>
+                <th>{{ 'name' | translate }}</th>
+                <th>{{ 'description' | translate }}</th>
+                <th>{{ 'creation_date' | translate }}</th>
             </tr>
         </thead>
         <tbody>

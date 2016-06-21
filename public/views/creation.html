@@ -1,34 +1,34 @@
 <p class="task-error" ng-hide="lists.length">
-    There is no list, please create a list before create a task.
+    {{ 'no_list' | translate }}
 </p>
 
 <form name="formList">
-    <h2>Create a new list</h2>
+    <h2>{{ 'create_list' | translate }}</h2>
     <div class="input-group">
-         <label for="list">List name:</label>
-         <input type="text" id="list" class="form-control" placeholder="List" ng-model="newList.name" required>
+         <label for="list">{{ 'list_name' | translate }}:</label>
+         <input type="text" id="list" class="form-control" placeholder="{{ 'list_name' | translate }}" ng-model="newList.name" required>
     </div>
     <div class="input-group">
-        <button class="btn btn-success" ng-disabled="formList.$invalid" ng-click="displayList()">Create a new list</button>
+        <button class="btn btn-success" ng-disabled="formList.$invalid" ng-click="displayList()">{{ 'create_list' | translate }}</button>
     </div>
 </form>
 
 <form name="formTask" ng-show="lists.length">
-    <h2>Add a new task</h2>
+    <h2>{{ 'add_task' | translate }}</h2>
     <div class="input-group">
-         <label for="task-name">Task name:</label>
-         <input type="text" id="task-name" class="form-control" placeholder="Task" ng-model="newTask.name" required>
+         <label for="task-name">{{ 'task_name' | translate }}:</label>
+         <input type="text" id="task-name" class="form-control" placeholder="{{ 'task_name' | translate }}" ng-model="newTask.name" required>
     </div>
     <div class="input-group">
-         <label for="task-content">Task description:</label>
-         <input type="text" id="task-content" class="form-control" placeholder="Task description" ng-model="newTask.content">
+         <label for="task-content">{{ 'task_description' | translate }}:</label>
+         <input type="text" id="task-content" class="form-control" placeholder="{{ 'task_description' | translate }}" ng-model="newTask.content">
     </div>
     <div class="input-group">
-        <label for="task-list">Task list:</label>
+        <label for="task-list">{{ 'task_list' | translate }}:</label>
         <select class="form-control" id="task-list" name="task-list"  ng-options="list.name for list in lists track by list.id" ng-model="newTask.list" required>
         </select>
     </div>
     <div class="input-group">
-        <button class="btn btn-success" ng-disabled="formTask.$invalid" ng-click="displayTask()">Add a new task</button>
+        <button class="btn btn-success" ng-disabled="formTask.$invalid" ng-click="displayTask()">{{ 'add_task' | translate }}</button>
     </div>
 </form>
