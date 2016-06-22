@@ -125,12 +125,12 @@ app.run(['$rootScope', '$location', '$http', 'notie', '$translate', 'localStorag
           $http.get('/authenticated').success(function (data) {
             if (!data.status) {
 
-              $translate(['authenticate_title', 'login', 'continue', 'cancel', 'name', 'password', 'invalid_auth']).then(function (translations) {
+              $translate(['authenticate_title', 'login', 'continue', 'cancel', 'email', 'password', 'invalid_auth']).then(function (translations) {
 
-                notie.input(translations['authenticate_title'], translations['continue'], translations['cancel'], 'text', translations['name'], function (name) {
+                notie.input(translations['authenticate_title'], translations['continue'], translations['cancel'], 'text', translations['email'], function (email) {
                   notie.input(translations['authenticate_title'], translations['login'], translations['cancel'], 'password', translations['password'], function (password) {
                     $http.post('/login', {
-                        name: name,
+                        email: email,
                         password: password
                     }).success(function(data) {
                         $rootScope.user = data;

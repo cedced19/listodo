@@ -5,7 +5,7 @@
 </h1>
 <h1 ng-show="editing">{{ 'editing' | translate }}</h1>
 <p class="task-info">
-    <b>{{ 'creation_date' | translate }}:</b> {{currentTask.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+    <b>{{ 'creation_date' | translate }}:</b> {{ 'date' | translate:{date: currentTask.createdAt} }} {{ currentTask.createdAt | date: 'HH:mm' }}
     <br>
     <b>{{ 'list_name' | translate }}:</b> {{currentTask.list.name}}
 </p>
@@ -16,7 +16,7 @@
 		<input type="text" id="task-name" class="form-control" placeholder="{{ 'task_name' | translate }}" ng-model="currentTask.name" required>
 	</div>
 	<div class="input-group">
-		<label for="task-content">Task description:</label>
+		<label for="task-content">{{ 'task_description' | translate }}:</label>
 		<input type="text" id="task-content" class="form-control" placeholder="{{ 'task_description' | translate }}" ng-model="currentTask.content">
 	</div>
 	<div class="text-center">

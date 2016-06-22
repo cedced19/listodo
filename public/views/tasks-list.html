@@ -13,7 +13,7 @@
             <tr ng-repeat="task in list.tasks | filter:search | orderBy:'createdAt':true" ng-click="goTask(task)" class="fade">
                 <td>{{task.name}}</td>
                 <td>{{task.content}}</td>
-                <td>{{task.createdAt | date: 'dd/MM/yyyy'}}</td>
+                <td>{{ 'date' | translate:{date: task.createdAt} }}</td>
             </tr>
         </tbody>
     </table>

@@ -15,7 +15,9 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'notie', functio
                 }).success(function (data) {
                         $scope.newList = {};
                         $scope.lists.push(data);
-                        notie.alert(1, 'The list has been created.', 3);
+                        $translate('list_saved').then(function (translation) {
+                          notie.alert(1, translation, 3);
+                        });
                 }).error($rootScope.$error);
         };
 
@@ -27,7 +29,9 @@ module.exports = ['$scope', '$location', '$http', '$rootScope', 'notie', functio
                         content: $scope.newTask.content
                 }).success(function (data) {
                         $location.path('/tasks/' + data.id);
-                        notie.alert(1, 'The task has been created.', 3);
+                        $translate('task_saved').then(function (translation) {
+                          notie.alert(1, translation, 3);
+                        });
                 }).error($rootScope.$error);
         };
 

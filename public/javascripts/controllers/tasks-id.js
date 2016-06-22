@@ -1,4 +1,4 @@
-module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'notie', function($scope, $location, $http, $routeParams, $rootScope, notie) {
+module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 'notie', '$translate', function($scope, $location, $http, $routeParams, $rootScope, notie, $translate) {
 
         $http.get('/api/tasks/' + $routeParams.id).success(function (data) {
             $scope.currentTask = data;
@@ -13,20 +13,24 @@ module.exports = ['$scope', '$location', '$http', '$routeParams', '$rootScope', 
                       name: $scope.currentTask.name,
                       content: $scope.currentTask.content
               }).success(function (data) {
-                      notie.alert(1, 'The task has been updated.', 3);
+                      $translate('task_updated').then(function (translation) {
+                        notie.alert(1, translation, 3);
+                      });
                       $scope.editing = false;
               }).error($rootScope.$error);
             });
         };
 
         $scope.deleteTask = function () {
-            $rootScope.$login(function () {
-              notie.confirm('Delete this task?', 'Yes, delete it!', 'Cancel', function() {
-                  $http.delete('/api/tasks/'+ $scope.currentTask.id).success(function() {
-                      notie.alert(1, 'Deleted! The task has been deleted.', 3);
-                      $location.path('/');
-                  }).error($rootScope.$error);
+          $rootScope.$login(function () {
+                $translate(['delete_it', 'delete_task_question', 'task_deleted', 'cancel']).then(function (translations) {
+                  notie.confirm(translations['delete_task_question'], translations['delete_it'], translations['cancel'], function() {
+                      $http.delete('/api/tasks/' + $scope.currentTask.id).success(function() {
+                          notie.alert(1, translations['task_deleted'], 3);
+                          $location.path('/');
+                      }).error($rootScope.$error);
+                  });
+                });
               });
-            });
         }
 }];
