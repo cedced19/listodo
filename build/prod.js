@@ -11,7 +11,7 @@ var b = browserify({ cache: {}, entries: [path('../public/javascripts/index.js')
 b.transform({
     global: true,
     sourcemap: false
-}, 'uglifyify');
+}, uglifyify);
 
 var prod = function () {
   b.bundle().pipe(fs.createWriteStream(path('../public/javascripts/scripts.js')));
