@@ -816,7 +816,7 @@ a {
 	}
 }
 @media print {
-	.task-info,button,header,textarea {
+	.task-info,#notie-alert-text,button,header,textarea {
 		display:none
 	}
 	.site-content {

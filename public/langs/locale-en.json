@@ -63,5 +63,6 @@
   "language_name": "Language name",
   "language_code": "Language code",
   "create_list": "Create a new list",
-  "editing": "Editing"
+  "editing": "Editing",
+  "language_updated": "The language has been changed."
 }
