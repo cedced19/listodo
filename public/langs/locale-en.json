@@ -64,5 +64,6 @@
   "language_code": "Language code",
   "create_list": "Create a new list",
   "editing": "Editing",
-  "language_updated": "The language has been changed."
+  "language_updated": "The language has been changed.",
+  "list_name": "List name"
 }
